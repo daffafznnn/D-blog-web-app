@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Keyframes untuk rotasi */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Keyframes untuk perubahan warna background */
+@keyframes fadeToWhite {
+  0% {
+    background-color: hsl(220, 60%, 20%); /* Warna biru tua */
+  }
+  100% {
+    background-color: white; /* Warna putih */
+  }
+}
+
+/* Body ::before berotasi otomatis */
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 750px;
+  height: 750px;
+  filter: blur(150px);
+  background-image: linear-gradient(hsl(222, 84%, 60%), hsl(164, 79%, 71%));
+  animation: rotate 50s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none; /* Mencegah interaksi dengan background */
+}
+
+/* Ukuran yang lebih kecil untuk viewport besar */
+@media (min-width: 720px) {
+  body::before {
+    width: 500px;
+    height: 500px;
+    filter: blur(100px);
+  }
+}
+
+/* Body background berubah dari biru tua ke putih */
+body {
+  padding-top: 70px; /* Disesuaikan dengan tinggi navbar */
+  animation: fadeToWhite 2s ease-out forwards; /* Animasi perubahan warna */
+  background-color: hsl(220, 60%, 20%); /* Warna biru tua awal */
+}
+
+* {
+  transition: all 0.5s ease-out;
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
